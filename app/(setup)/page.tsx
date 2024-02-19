@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
 import { redirect } from "next/navigation";
 
-const SetupPage = async () => {
+export default async function SetupPage() {
   const profile = await initialProfile();
   const server = await db.server.findFirst({
     where: {
@@ -20,6 +20,4 @@ const SetupPage = async () => {
   }
 
   return <InitialModal />;
-};
-
-export default SetupPage;
+}

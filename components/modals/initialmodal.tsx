@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/file-upload";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -34,8 +35,10 @@ const formSchema = z.object({
   }),
 });
 
-export const InitialModal = () => {
+export function InitialModal() {
   const [isMounted, setIsMounted] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
@@ -51,9 +54,20 @@ export const InitialModal = () => {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-  };
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      await fetch("/api/servers", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+
+      form.reset();
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   if (!isMounted) return null;
 
@@ -119,4 +133,4 @@ export const InitialModal = () => {
       </DialogContent>
     </Dialog>
   );
-};
+}

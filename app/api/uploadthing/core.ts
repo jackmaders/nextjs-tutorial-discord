@@ -4,13 +4,13 @@ import { UploadThingError } from "uploadthing/server";
 
 const f = createUploadthing();
 
-const handleAuth = () => {
+function handleAuth() {
   const { userId } = auth();
 
   if (!userId) throw new UploadThingError("Unauthorised");
 
   return { userId };
-};
+}
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
