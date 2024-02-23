@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint-config-prettier"
+  ],
+  "plugins": [
+    "eslint-plugin-import-alias"
+  ],
+  "rules": {
+    "import-alias/import-alias": [
+      "error",
+      {
+        "aliases": [
+          {
+            "alias": "@/",
+            "matcher": "^"
+          }
+        ]
+      }
+    ]
+  }
+}

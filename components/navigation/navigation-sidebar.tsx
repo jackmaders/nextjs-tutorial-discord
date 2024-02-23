@@ -1,12 +1,12 @@
+import { ModeToggle } from "@/components/mode-toggle";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { redirect } from "next/navigation";
-import { ScrollArea } from "../ui/scroll-area";
-import { Separator } from "../ui/separator";
-import NavigationAction from "./navigation-action";
-import NavigationItem from "./navigation-item";
-import { ModeToggle } from "../mode-toggle";
 import { UserButton } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import NavigationAction from "@/components/navigation/navigation-action";
+import NavigationItem from "@/components/navigation/navigation-item";
 
 export default async function NavigationSidebar() {
   const profile = await currentProfile();
@@ -36,9 +36,14 @@ export default async function NavigationSidebar() {
 
       <div className="flex items-center w-full flex-col gap-y-4">
         <ModeToggle />
-        <UserButton afterSignOutUrl="/"appearance={{elements:{
-          avatarBox:"h-12 aspect-square w-auto"
-        }}} />
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox: "h-12 aspect-square w-auto",
+            },
+          }}
+        />
       </div>
     </div>
   );
