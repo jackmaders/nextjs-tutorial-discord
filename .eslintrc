@@ -1,15 +1,22 @@
 {
+  "env": {
+    "es2020": true
+  },
   "extends": [
+    "eslint:recommended",
     "next/core-web-vitals",
     "eslint-config-prettier"
   ],
   "plugins": [
     "eslint-plugin-import-alias",
-    "simple-import-sort"
+    "simple-import-sort",
+    "@typescript-eslint"
   ],
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "import-alias/import-alias": [
       "error",
       {
