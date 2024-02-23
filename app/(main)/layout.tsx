@@ -1,3 +1,5 @@
+import React from "react";
+
 import NavigationSidebar from "@/components/navigation/navigation-sidebar";
 
 export default async function MainLayout({
@@ -7,7 +9,7 @@ export default async function MainLayout({
 }) {
   return (
     <div className="flex h-full">
-      <div className="hidden md:block basis-20 flex-none">
+      <div className="hidden flex-none basis-20 md:block">
         <NavigationSidebar />
       </div>
       <main className="">{children}</main>

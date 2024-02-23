@@ -3,7 +3,9 @@ import "@/app/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+import React from "react";
 
+import { ModalProvider } from "@/components/providers/modal-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +31,7 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="nextjs-tutorial-discord"
           >
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </body>

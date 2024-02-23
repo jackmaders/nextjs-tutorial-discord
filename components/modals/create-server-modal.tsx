@@ -37,6 +37,9 @@ const formSchema = z.object({
 
 export function CreateServerModal() {
   const { isOpen, onClose, type } = useModal();
+
+  const isModalOpen = isOpen && type === "createServer";
+
   const router = useRouter();
 
   const form = useForm({
@@ -58,16 +61,22 @@ export function CreateServerModal() {
 
       form.reset();
       router.refresh();
+      onClose();
     } catch (error) {
       console.error(error);
     }
   }
 
+  function handleClose() {
+    form.reset();
+    onClose();
+  }
+
   return (
-    <Dialog open>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
-        <DialogHeader className="pt-8 px-6">
-          <DialogTitle className=" text-2xl text-center font-bold">
+    <Dialog open={isModalOpen} onOpenChange={handleClose}>
+      <DialogContent className="overflow-hidden bg-white p-0 text-black">
+        <DialogHeader className="px-6 pt-8">
+          <DialogTitle className=" text-center text-2xl font-bold">
             Customise your server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
@@ -101,13 +110,13 @@ export function CreateServerModal() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="uppercase text-sx fort-bold text-zinc-500 dark:text-secondary/70">
+                    <FormLabel className="text-sx fort-bold uppercase text-zinc-500 dark:text-secondary/70">
                       Server name
                     </FormLabel>
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        className="border-0 bg-zinc-300/50 text-black focus-visible:ring-0 focus-visible:ring-offset-0"
                         placeholder="Enter server name"
                         {...field}
                       />
