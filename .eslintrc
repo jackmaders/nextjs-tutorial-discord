@@ -4,9 +4,12 @@
     "eslint-config-prettier"
   ],
   "plugins": [
-    "eslint-plugin-import-alias"
+    "eslint-plugin-import-alias",
+    "simple-import-sort"
   ],
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "import-alias/import-alias": [
       "error",
       {
